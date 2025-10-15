@@ -2,7 +2,7 @@ import streamlit as st
 
 st.set_page_config(page_title="Dispute Notepad", layout="wide")
 
-st.title("?? Dispute Processing Notepad")
+st.title("Dispute Processing Notepad")
 st.write("Your AI helper for handling dispute accounts efficiently.")
 
 # User input area
@@ -14,3 +14,4 @@ if user_input:
     st.markdown("- Check backup reads for rate calculation")
     st.markdown("- Verify supplier cost rate difference")
     st.markdown("- Escalate if data mismatch persists")
+
