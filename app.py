@@ -6,7 +6,7 @@ from langchain_groq import ChatGroq
 
 st.set_page_config(page_title="Dispute Notepad Assistant", page_icon="🧾", layout="centered")
 
-st.title("🧾 Smart Dispute Processing Notepad (Free Model)")
+st.title("🧾 Dispute Processing Notepad (Free Model)")
 
 # Load dispute work instructions
 try:
@@ -56,3 +56,4 @@ if st.button("💡 Generate Contextual Recommendations"):
 
 st.markdown("---")
 st.caption("Powered by Groq Llama 3 · LangChain · Streamlit")
+
