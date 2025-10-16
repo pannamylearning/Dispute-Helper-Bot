@@ -11,7 +11,7 @@ user_input = st.text_area("Enter dispute details or notes here:", height=200)
 # Add a button aligned to the right below the text area
 col1, col2, col3 = st.columns([6, 2, 1])  # adjust ratios for layout
 with col3:
-    generate = st.button("🚀 Generate Suggestions")
+    generate = st.button("🚀 Process Info")
 
 # Show suggestions only when button is clicked and text is entered
 if generate and user_input:
@@ -22,3 +22,4 @@ if generate and user_input:
 
 elif generate and not user_input:
     st.warning("⚠️ Please enter dispute details before generating suggestions.")
+
