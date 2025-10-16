@@ -1,7 +1,7 @@
 import streamlit as st
 from datetime import datetime
 
-st.title("🧾 Smart Dispute Processing Notepad")
+st.title("🧾 Dispute Processing Notepad")
 
 # Load work instruction (sample placeholder)
 WORK_INSTRUCTIONS = {
@@ -24,4 +24,5 @@ if st.button("💡 Generate Recommendations"):
             found = True
     if not found:
         st.info("No specific recommendation found. Try adding more case details or keywords.")
+
 
