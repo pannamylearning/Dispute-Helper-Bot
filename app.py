@@ -1,4 +1,4 @@
-mport streamlit as st
+import streamlit as st
 from datetime import datetime
 
 st.title("🧾 Smart Dispute Processing Notepad")
@@ -24,3 +24,4 @@ if st.button("💡 Generate Recommendations"):
             found = True
     if not found:
         st.info("No specific recommendation found. Try adding more case details or keywords.")
+
