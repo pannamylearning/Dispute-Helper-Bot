@@ -1,25 +1,26 @@
-import streamlit as st
+mport streamlit as st
+from datetime import datetime
 
-st.set_page_config(page_title="Dispute Notepad", layout="wide")
+st.title("🧾 Smart Dispute Processing Notepad")
 
-st.title("🧾 Dispute Processing Notepad")
-st.write("Your AI helper for handling dispute accounts efficiently.")
+# Load work instruction (sample placeholder)
+WORK_INSTRUCTIONS = {
+    "backup read": "Check both backup reads and average them to calculate the Change of Supplier (COS) read.",
+    "start date": "Validate the start date with MDM and confirm supplier switch date alignment.",
+    "status check": "If account is inactive, validate the status in CRM before processing dispute.",
+    "credit check": "Confirm if the credit block is lifted before re-processing the invoice.",
+    "escalation": "Escalate only if SLA exceeded 48 hours or if variance > 20%."
+}
 
-# User input area
-user_input = st.text_area("Enter dispute details or notes here:", height=200)
+# Text area for dispute input
+dispute_text = st.text_area("Enter Dispute Details:", height=200)
 
-# Add a button aligned to the right below the text area
-col1, col2, col3 = st.columns([6, 2, 1])  # adjust ratios for layout
-with col3:
-    generate = st.button("🚀 Process Info")
-
-# Show suggestions only when button is clicked and text is entered
-if generate and user_input:
-    st.write("### 💡 Suggested Next Actions:")
-    st.markdown("- Check backup reads for rate calculation")
-    st.markdown("- Verify supplier cost rate difference")
-    st.markdown("- Escalate if data mismatch persists")
-
-elif generate and not user_input:
-    st.warning("⚠️ Please enter dispute details before generating suggestions.")
-
+if st.button("💡 Generate Recommendations"):
+    st.markdown("### 🧠 Contextual Recommendations")
+    found = False
+    for key, tip in WORK_INSTRUCTIONS.items():
+        if key in dispute_text.lower():
+            st.success(f"🔹 *{key.title()}*: {tip}")
+            found = True
+    if not found:
+        st.info("No specific recommendation found. Try adding more case details or keywords.")
