@@ -1,6 +1,7 @@
 streamlit
-langchain
+# Pin langchain and langchain-groq to pre-1.0 releases so legacy imports work
+langchain<1.0.0
 langchain-community
-langchain-groq
+langchain-groq<1.0.0
 faiss-cpu
 sentence-transformers
