@@ -1,0 +1,23 @@
+* When to raise an Escalation:
+
+> 
+1st stage escalations raise 5 working days from our flow being sent: Raise level 1 escalation.
+
+
+
+> 2nd stage escalations raise 10 working days from our flow being sent. Raise level 2 escalation.
+
+
+
+> 3rd stage escalations raise 15 working days from our flow being sent. Raise Contract Manager escalation. 
+
+Escalations required when we have sent the below flows:
+
+
+Proposalssent >= 5 working days.
+
+
+Alternatives read proposal >= 5 working days.
+
+
+Actual Read requests/Disagreements (for want of actual read) >= 10 working days.
