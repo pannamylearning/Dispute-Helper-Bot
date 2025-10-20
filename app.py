@@ -15,7 +15,7 @@ def load_vector_store():
     # Read the instruction file at runtime so missing files don't cause
     # a NameError at import time. Return None if file is missing.
     try:
-        with open("dispute_work_instructions.txt", "r", encoding="utf-8") as f:
+        with open("Dispute instruction part 1.txt", "r", encoding="utf-8") as f:
             text_data = f.read()
     except FileNotFoundError:
         return None
@@ -78,6 +78,7 @@ if st.button("💡 Generate Contextual Recommendations"):
 
 st.markdown("---")
 st.caption("Powered by Groq Llama 3 · LangChain · Streamlit")
+
 
 
 
