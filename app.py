@@ -63,7 +63,7 @@ if st.button("💡 Generate Contextual Recommendations"):
     if dispute_text.strip():
         with st.spinner("Analyzing dispute details using Llama 3..."):
             if missing_instructions:
-                st.error("❌ File 'dispute_work_instructions.txt' not found in the repo. Add it to enable vector search and recommendations.")
+                st.error("❌ File 'Dispute instruction part.txt' not found in the repo. Add it to enable vector search and recommendations.")
             elif qa is None:
                 # If QA is None here, either the GROQ API key is missing or
                 # some other runtime dependency failed to initialize.
@@ -78,4 +78,5 @@ if st.button("💡 Generate Contextual Recommendations"):
 
 st.markdown("---")
 st.caption("Powered by Groq Llama 3 · LangChain · Streamlit")
+
 
