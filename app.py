@@ -82,7 +82,7 @@ with col1:
     meter_number = st.text_input("Meter Number")
 with col2:
     ssd_date = st.date_input("SSD Date")
-    supply_status = st.selectbox("Supply Status", ["Loss", "Active", "Inactive"])
+    supply_status = st.selectbox("Supply Status", ["Loss", "Gain"])
     cos_read = st.text_input("COS Read")
     proposed_read = st.text_input("Proposed Read")
 
