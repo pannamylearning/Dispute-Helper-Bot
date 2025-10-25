@@ -103,7 +103,7 @@ mpxn = st.text_input("MPXN", "1234567890123")
 other_supplier = st.text_input("Other Supplier", "Spow")
 meter_number = st.text_input("Meter Number")
 ssd_date = st.date_input("SSD Date")
-supply_status = st.selectbox("Supply Status", ["Loss", "Active", "Inactive", "Pending"])
+supply_status = st.selectbox("Supply Status", ["Loss", "Gain"])
 
 st.subheader("Consumption Reads")
 cos_read = st.text_input("COS Read")
@@ -170,3 +170,4 @@ st.download_button(
     file_name="dispute_form.txt",
     mime="text/plain"
 )
+
