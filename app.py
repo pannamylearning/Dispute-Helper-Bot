@@ -7,7 +7,7 @@ from langchain_groq import ChatGroq
 
 st.set_page_config(page_title="Dispute Notepad Assistant", page_icon="🧾", layout="centered")
 
-st.title("🧾 Dispute Processing Notepad (Free Model)")
+st.title("🧾 Dispute Processing Notepad (Testing)")
 
 # Build embeddings and FAISS vector store (cached to avoid rebuild each rerun)
 @st.cache_resource
@@ -78,6 +78,7 @@ if st.button("💡 Generate Contextual Recommendations"):
 
 st.markdown("---")
 st.caption("Powered by Groq Llama 3 · LangChain · Streamlit")
+
 
 
 
