@@ -41,7 +41,7 @@ def load_llm():
         return None
     return ChatGroq(
         groq_api_key=st.secrets["GROQ_API_KEY"],
-        model="llama3-8b-8192"
+        model="llama-3.1-8b-instant"
     )
 
 llm = load_llm()
@@ -78,6 +78,7 @@ if st.button("💡 Generate Contextual Recommendations"):
 
 st.markdown("---")
 st.caption("Powered by Groq Llama 3 · LangChain · Streamlit")
+
 
 
 
