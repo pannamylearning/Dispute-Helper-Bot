@@ -7,8 +7,8 @@ from langchain_groq import ChatGroq
 
 st.set_page_config(page_title="Dispute Notepad Assistant", page_icon="🧾", layout="wide")
 
-# ---------------- PAGE TITLE ----------------
-st.title("🧾 Dispute Processing Notepad (Testing)")
+# ---------------- PAGE HEADER ----------------
+st.title("🧾 Dispute Processing Notepad (One-Page View)")
 
 # ---------------- EMBEDDING SETUP ----------------
 @st.cache_resource
@@ -45,10 +45,10 @@ if llm is not None and db is not None:
 else:
     qa = None
 
-# ---------------- LAYOUT: TWO COLUMNS ----------------
+# ---------------- MAIN TWO-COLUMN LAYOUT ----------------
 left_col, right_col = st.columns([0.55, 0.45], gap="large")
 
-# ---------------- LEFT SIDE: DISPUTE TEXT ----------------
+# LEFT PANEL -------------------
 with left_col:
     dispute_text = st.text_area("✍️ Enter or paste dispute details:", height=300)
 
@@ -56,9 +56,9 @@ with left_col:
         if dispute_text.strip():
             with st.spinner("Analyzing dispute details using Llama 3..."):
                 if missing_instructions:
-                    st.error("❌ Missing file: 'Dispute instruction part 1.txt'. Please add it.")
+                    st.error("❌ File 'Dispute instruction part 1.txt' not found.")
                 elif qa is None:
-                    st.error("❌ GROQ API key missing. Add `GROQ_API_KEY` in Streamlit secrets.")
+                    st.error("❌ GROQ API key missing or LLM unavailable.")
                 else:
                     query = f"Given this dispute text, what should I do?\n\n{dispute_text}"
                     answer = qa.run(query)
@@ -67,37 +67,41 @@ with left_col:
         else:
             st.warning("Please enter some dispute details first.")
 
-# ---------------- RIGHT SIDE: FORM ----------------
+# RIGHT PANEL -------------------
 with right_col:
-    st.subheader("📋 Dispute Data Form")
+    st.subheader("📋 Dispute Data Form (Inline View)")
 
-    col1, col2 = st.columns(2)
-    with col1:
-        dispute_id = st.text_input("Dispute ID", "1234")
-        account = st.text_input("Account", "A-1234566")
-        mpxn = st.text_input("MPXN", "1234567890123")
-        other_supplier = st.text_input("Other Supplier", "Spow")
-    with col2:
-        meter_number = st.text_input("Meter Number")
-        ssd_date = st.date_input("SSD Date")
-        supply_status = st.selectbox("Supply Status", ["Loss", "Active", "Inactive"])
-        cos_read = st.text_input("COS Read")
+    # Define helper for inline field
+    def inline_input(label, key=None, default=""):
+        col1, col2 = st.columns([0.4, 0.6])
+        with col1:
+            st.markdown(f"**{label}:**")
+        with col2:
+            return st.text_input("", value=default, key=key, label_visibility="collapsed")
 
-    proposed_read = st.text_input("Proposed Read")
+    dispute_id = inline_input("Dispute ID", "dispute_id", "1234")
+    account = inline_input("Account", "account", "A-1234566")
+    mpxn = inline_input("MPXN", "mpxn", "1234567890123")
+    other_supplier = inline_input("Other Supplier", "supplier", "Spow")
+    meter_number = inline_input("Meter Number", "meter_number")
+    ssd_date = inline_input("SSD Date", "ssd_date")
+    supply_status = inline_input("Supply Status", "supply_status", "Loss")
+    cos_read = inline_input("COS Read", "cos_read")
+    proposed_read = inline_input("Proposed Read", "proposed_read")
 
     st.markdown("### 📦 Backup Read Set 1")
-    r1_set1 = st.text_input("R1 (Read & Date)", key="r1s1")
-    r2_set1 = st.text_input("R2 (Read & Date)", key="r2s1")
+    r1_set1 = inline_input("R1 (Read & Date)", "r1s1")
+    r2_set1 = inline_input("R2 (Read & Date)", "r2s1")
 
     st.markdown("### 📦 Backup Read Set 2")
-    r1_set2 = st.text_input("R1 (Read & Date)", key="r1s2")
-    r2_set2 = st.text_input("R2 (Read & Date)", key="r2s2")
+    r1_set2 = inline_input("R1 (Read & Date)", "r1s2")
+    r2_set2 = inline_input("R2 (Read & Date)", "r2s2")
 
-    remark = st.text_area("🗒 Remark (Dispute Summary)", height=100)
-    other_chl = st.text_input("Other CHL Comms (Ref Field)")
-    mmu_form = st.text_input("MMU/Settlement Form")
+    remark = st.text_area("🗒 Remark (Dispute Summary)", height=80)
+    other_chl = inline_input("Other CHL Comms (Ref Field)", "other_chl")
+    mmu_form = inline_input("MMU/Settlement Form", "mmu_form")
 
-    # ---------------- COPY BUTTON ----------------
+    # COPY BUTTON
     if st.button("📋 Copy Form Data"):
         combined_data = f"""
 Dispute ID: {dispute_id}
