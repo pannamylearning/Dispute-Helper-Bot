@@ -5,7 +5,20 @@ from langchain.vectorstores import FAISS
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain_groq import ChatGroq
 
+# ---------------- PAGE SETUP ----------------
 st.set_page_config(page_title="Dispute Notepad Assistant", page_icon="🧾", layout="wide")
+
+# --- GLOBAL STYLE TWEAKS (Compact Look) ---
+st.markdown("""
+    <style>
+        .block-container {padding-top: 0.8rem; padding-bottom: 0.8rem; padding-left: 1.5rem; padding-right: 1.5rem;}
+        .stTextInput, .stTextArea, .stSelectbox, .stDateInput label {font-size: 0.9rem !important;}
+        textarea, input {padding: 0.3rem 0.4rem !important; font-size: 0.9rem !important;}
+        h3, h4, h5, h6 {margin-bottom: 0.3rem;}
+        .stButton>button {padding: 0.3rem 0.8rem; font-size: 0.9rem;}
+        div[data-testid="column"] {padding: 0.2rem 0.5rem;}
+    </style>
+""", unsafe_allow_html=True)
 
 # ---------------- PAGE HEADER ----------------
 st.title("🧾 Dispute Processing Notepad (One-Page View)")
@@ -40,19 +53,21 @@ def load_llm():
 
 llm = load_llm()
 
-if llm is not None and db is not None:
-    qa = RetrievalQA.from_chain_type(llm=llm, retriever=db.as_retriever())
-else:
-    qa = None
+qa = RetrievalQA.from_chain_type(llm=llm, retriever=db.as_retriever()) if (llm and db) else None
 
-# ---------------- MAIN TWO-COLUMN LAYOUT ----------------
-left_col, right_col = st.columns([0.55, 0.45], gap="large")
+# ---------------- MAIN LAYOUT ----------------
+left_col, right_col = st.columns([2.2, 1.5], gap="medium")
 
 # LEFT PANEL -------------------
 with left_col:
-    dispute_text = st.text_area("✍️ Enter or paste dispute details:", height=300)
+    st.markdown("#### ✍️ Dispute Details / Notepad")
+    dispute_text = st.text_area(
+        "Enter or paste dispute details below:",
+        height=270,
+        placeholder="Type or paste your dispute notes here..."
+    )
 
-    if st.button("💡 Generate Contextual Recommendations"):
+    if st.button("💡 Generate Contextual Recommendations", use_container_width=True):
         if dispute_text.strip():
             with st.spinner("Analyzing dispute details using Llama 3..."):
                 if missing_instructions:
@@ -69,16 +84,16 @@ with left_col:
 
 # RIGHT PANEL -------------------
 with right_col:
-    st.subheader("📋 Dispute Data Form (Inline View)")
+    st.markdown("#### 📋 Dispute Data Form (Inline Compact View)")
 
-    # Define helper for inline field
     def inline_input(label, key=None, default=""):
-        col1, col2 = st.columns([0.4, 0.6])
+        col1, col2 = st.columns([0.45, 0.55])
         with col1:
-            st.markdown(f"**{label}:**")
+            st.markdown(f"<div style='text-align:right; padding-top:4px;'><b>{label}:</b></div>", unsafe_allow_html=True)
         with col2:
             return st.text_input("", value=default, key=key, label_visibility="collapsed")
 
+    # Basic dispute fields
     dispute_id = inline_input("Dispute ID", "dispute_id", "1234")
     account = inline_input("Account", "account", "A-1234566")
     mpxn = inline_input("MPXN", "mpxn", "1234567890123")
@@ -89,20 +104,21 @@ with right_col:
     cos_read = inline_input("COS Read", "cos_read")
     proposed_read = inline_input("Proposed Read", "proposed_read")
 
-    st.markdown("### 📦 Backup Read Set 1")
+    st.markdown("##### 📦 Backup Read Set 1")
     r1_set1 = inline_input("R1 (Read & Date)", "r1s1")
     r2_set1 = inline_input("R2 (Read & Date)", "r2s1")
 
-    st.markdown("### 📦 Backup Read Set 2")
+    st.markdown("##### 📦 Backup Read Set 2")
     r1_set2 = inline_input("R1 (Read & Date)", "r1s2")
     r2_set2 = inline_input("R2 (Read & Date)", "r2s2")
 
-    remark = st.text_area("🗒 Remark (Dispute Summary)", height=80)
-    other_chl = inline_input("Other CHL Comms (Ref Field)", "other_chl")
+    remark = st.text_area("🗒 Remark / Summary", height=60)
+    other_chl = inline_input("Other CHL Comms", "other_chl")
     mmu_form = inline_input("MMU/Settlement Form", "mmu_form")
 
-    # COPY BUTTON
-    if st.button("📋 Copy Form Data"):
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    if st.button("📋 Copy Form Data", use_container_width=True):
         combined_data = f"""
 Dispute ID: {dispute_id}
 Account: {account}
@@ -129,5 +145,5 @@ MMU/Settlement Form: {mmu_form}
         st.code(combined_data, language="markdown")
         st.info("✅ Copy the above formatted data manually for your record or processing.")
 
-st.markdown("---")
-st.caption("Powered by Groq Llama 3 · LangChain · Streamlit")
+# FOOTER
+st.markdown("<hr><center><small>Powered by Groq Llama 3 · LangChain · Streamlit</small></center>", unsafe_allow_html=True)
