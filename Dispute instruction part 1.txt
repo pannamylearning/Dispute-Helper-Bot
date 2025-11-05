@@ -1,23 +1,113 @@
-* When to raise an Escalation:
-
-> 
-1st stage escalations raise 5 working days from our flow being sent: Raise level 1 escalation.
+Dispute basic and should I raise a  dispute?
 
 
+Disputes are an industry communication with another supplier to change the opening/closing meter reading aka the Change of Supply Read (CoS)
 
-> 2nd stage escalations raise 10 working days from our flow being sent. Raise level 2 escalation.
+Don't just assume that because you think the CoS is wrong, you need to open a dispute. It may need something else to correct this, for example an MTD update
 
+We must have an Opening Meter Reading or Closing Meter Reading to dispute. Consider raising an MCOS if you think we should have received a reading by now, and check out the Missing D86 process
 
+Disputes will not always be financially beneficial to the customer. It's important to remember that having inaccurate reading history can impact other areas of the business e.g. settlements.
 
-> 3rd stage escalations raise 15 working days from our flow being sent. Raise Contract Manager escalation. 
+We should be considering tolerance and age of COS as the main factors when investigating a potential Disputed Reading.
 
-Escalations required when we have sent the below flows:
+It's important to ensure that whether the gaining or losing supplier, we still have a responsibility to raise a Disputed Read for a customer when they have informed us that the opening/closing read is incorrect. This should be done no later than 5 working days from being informed of the error.
 
+What should I check before raising a dispute?
 
-Proposalssent >= 5 working days.
+1. Meter Reading and Meter Serial Number (MSN)
 
+Have a look through the customer's record to see if there is a photo of the meter. If we do, and you go ahead wit the dispute, add the photo to SDES to back up your dispute. If not, check the NOSI/D311 flow to see if the supplie is likely to accept the dispute.
 
-Alternatives read proposal >= 5 working days.
+Is the customer reading the meter right? For help with dial meters, pop a picture in slack and let the games begin!
 
+Does the serial number on the meter match what we have in Kraken? If not, it isn't a dispute. It could be a meter exchange that has not been updated, so would need an MTD update completing.
 
-Actual Read requests/Disagreements (for want of actual read) >= 10 working days.
+Check the agent appointments - D0011 x 3 (DA, DC and MOP), D0149 and D0150 are in line with ECOES and Kraker when raising a gains dispute.
+
+2. Secure SMETS 1 Electricity
+
+These meters can be identified by their serial numbers. They always have a P in the 3rd position, so 13P, 16P, 18P etc.
+
+For SMETS 1 meters, suppliers will either use Total reads of Time of Use Reads. It's important to consider this when responding to a dispute or raising. It is unlikely in these instances if we are using different sets of reads (Total vs TOU) that we will be able to agree a read with the other supplier.
+
+In these instances, we can complete a Dummy MEX (DMEX) as it will not impact the customers billing as the usage will remain consistent.
+
+If you still think it's a dispute, ask your Industry Pro.
+
+So your account
+
+X Meter point date service-Kraker X
+
+Dispute Basics and Should I Raise X
+
++
+
+https://ed/customers.knowledgeowl.com/help/dispute-process
+
+3. How long since SSD?
+
+It's important that we follow the Industry Timescales for escalating a dispute (in SDEP), regardless of it the COS date is approaching 12 months. These timescales are:
+
+Escalation Level 1 after 5 working days from dispute raise date.
+
+Escalation Level 2 after 10 working days from dispute raise date.
+
+CM (Contract manager) Escalation after 15 working days from dispute raise date.
+
+4. Tolerance.
+
+If you've established that a dispute would be the right solution, it's time for maths. OFGEM says we can't dispute when the difference between the current opening read and the new proposed opening read is less than tolerance.
+
+Electricity
+
+Tolerance is 250 kWh. For multi rate meters, the difference of units might not always be positive. To calculate the tolerance, you should take one away from the other (Negative vs Positive) 1
+
+Example:
+
+R1 OMR was 5462 and should have been 5300 162 units difference (Positive)
+
+R2 OMR was 24865 and should have been 24999-134 units difference (Negative).
+Total difference is 28 units difference (162-134), dispute not required.
+
+Gas
+
+Tolerance is metric 108m³ or imperial 39ft³
+
+If the read you've estimated is within tolerance, we can completed a Credit Adjustment if the customer insists the opening/closing read is incorrect.
+
+Credit Adjustments should only be considered when either the COS date is over 12 months old, or the estimated new COS read is within tolerance. This should only be completed when customer insists:
+
+If the customer isn't happy with this resolution, you should be following the complaints process.
+
+What do you need to raise a dispute?
+
+A reading to propose. This can be the COR on COS
+
+An estimate based on two actual readings, these are known as the back up reads. Ideally, these would be at least a week apart. But don't worry if they are not. The most important thing is that we have two actual reads to back up our proposal.
+
+Two back up readings to justify your proposal.
+
+Customer Contact and Dispute Timescales
+
+A dispute is simply a conversation in flows between us and another supplier but for most people a dispute is something negative. If you can, avoid using the word dispute. Instead, try saying "change the meter read".
+
+A dispute can take up to 6 weeks, but may sometimes take longer if we can't agree.
+
+If we can, try and obtain a photo of the meter from the customer. We can send this to the other supplier over SDEP and can help speed up resolution. Please only do this if it is safe for the customer.
+
+Keep in touch with them when progress is made.
+
+Tips for Efficiency
+
+If you know the COS is wrong, and we have billed to it, reverse the charges. Doing this before completion of the dispute:
+
+allows Kraken to automatically bill when the dispute is done
+
+stops the customer being confused or worried by a big balance.
+
+Check on your disputes at least weekly. You are responsible for completing your own disputes so its important that you check on these and if things aren't progressing, we follow the industry timescales and raise this with an Industry Pro if escalation is needed.
+
+What if the customer is still unhappy?
+
+If a customer has complained to either supplier about the incorrect opening reading, a dispute, even within tolerance, can be done. Choose "Customer disputed" in the proposed reading section.
