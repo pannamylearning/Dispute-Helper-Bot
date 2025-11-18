@@ -21,7 +21,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ---------------- PAGE HEADER ----------------
-st.title("🧾 Dispute Processing Notepad (Testing)")
+st.title("🧾 Dispute Processing Notepad (testing)")
 
 # ---------------- EMBEDDING SETUP ----------------
 @st.cache_resource
@@ -147,4 +147,5 @@ MMU/Settlement Form: {mmu_form}
 
 # FOOTER
 st.markdown("<hr><center><small>Powered by Groq Llama 3 · LangChain · Streamlit</small></center>", unsafe_allow_html=True)
+
 
