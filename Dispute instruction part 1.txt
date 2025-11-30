@@ -35,9 +35,7 @@ In these instances, we can complete a Dummy MEX (DMEX) as it will not impact the
 
 If you still think it's a dispute, ask your Industry Pro.
 
-Dispute Basics and Should I Raise 
-
-3. How long since SSD?
+ How long since SSD?
 
 It's important that we follow the Industry Timescales for escalating a dispute (in SDEP), regardless of it the COS date is approaching 12 months. These timescales are:
 
@@ -103,4 +101,3 @@ Check on your disputes at least weekly. You are responsible for completing your 
 What if the customer is still unhappy?
 
 If a customer has complained to either supplier about the incorrect opening reading, a dispute, even within tolerance, can be done. Choose "Customer disputed" in the proposed reading section.
-
